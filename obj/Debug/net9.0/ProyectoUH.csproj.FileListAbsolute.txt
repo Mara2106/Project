@@ -1,0 +1,17 @@
+C:\ProyectoUH\bin\Debug\net9.0\ProyectoUH.exe
+C:\ProyectoUH\bin\Debug\net9.0\ProyectoUH.deps.json
+C:\ProyectoUH\bin\Debug\net9.0\ProyectoUH.runtimeconfig.json
+C:\ProyectoUH\bin\Debug\net9.0\ProyectoUH.dll
+C:\ProyectoUH\bin\Debug\net9.0\ProyectoUH.pdb
+C:\ProyectoUH\bin\Debug\net9.0\Spectre.Console.dll
+C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.csproj.AssemblyReference.cache
+C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.GeneratedMSBuildEditorConfig.editorconfig
+C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.AssemblyInfoInputs.cache
+C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.AssemblyInfo.cs
+C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.csproj.CoreCompileInputs.cache
+C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.csproj.Up2Date
+C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.dll
+C:\ProyectoUH\obj\Debug\net9.0\refint\ProyectoUH.dll
+C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.pdb
+C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.genruntimeconfig.cache
+C:\ProyectoUH\obj\Debug\net9.0\ref\ProyectoUH.dll

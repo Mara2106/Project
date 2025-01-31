@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "M6fGcCcYPvM=",
+  "success": true,
+  "projectFilePath": "C:\\ProyectoUH\\ProyectoUH.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\DELL\\.nuget\\packages\\spectre.console\\0.49.1\\spectre.console.0.49.1.nupkg.sha512"
+  ],
+  "logs": []
+}
