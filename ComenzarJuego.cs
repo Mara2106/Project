@@ -5,17 +5,19 @@ public class StartGame
     public static void MostrarPresentacion()
     {
         // Título del juego con estilo
-        var title = new FigletText("WELCOME TO MY GAME")
-            .LeftJustified()
-            .Color(Color.Cyan1);
-        
+        var title = new FigletText("WELCOME TO MY GAME").LeftJustified().Color(Color.Cyan1);
+
         AnsiConsole.Write(title);
-        
+
         // Mensaje inicial
-        AnsiConsole.MarkupLine("[bold yellow]El primer jugador en alcanzar 3 Objetos amarillos gana la partida.[/]");
-        AnsiConsole.MarkupLine("[bold red]Evite las trampas (Casillas Rojas) así evitará perder vida o que aumente el cooldown de su habilidad.[/]");
+        AnsiConsole.MarkupLine(
+            "[bold yellow]El primer jugador en alcanzar 3 Objetos amarillos gana la partida.[/]"
+        );
+        AnsiConsole.MarkupLine(
+            "[bold red]Evite las trampas (Casillas Rojas) así evitará perder vida o que aumente el cooldown de su habilidad.[/]"
+        );
         AnsiConsole.MarkupLine("[green]¡Disfruta del juego![/]");
-        
+
         // Opciones interactivas
         var menu = new SelectionPrompt<string>()
             .Title("¿Qué deseas hacer?")
@@ -45,7 +47,7 @@ public class StartGame
         AnsiConsole.MarkupLine("- Recoge objetos para ganar.");
         AnsiConsole.MarkupLine("- Evita los obstáculos y trampas.");
         AnsiConsole.MarkupLine("Presiona cualquier tecla para volver al menú.");
-        
+
         Console.ReadKey();
     }
 }

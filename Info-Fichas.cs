@@ -1,15 +1,15 @@
-using Spectre.Console;
 using System.Collections.Generic;
+using Spectre.Console;
 
 public class Informacion
 {
     // Tabla para mostrar la información de las fichas
-    private static Table InfoFichas= new Table();
+    private static Table tablaInformacion = new Table();
 
     // Inicializa la tabla con las columnas necesarias
     public static void Inicializar()
     {
-        InfoFichas = new Table()
+        tablaInformacion = new Table()
             .Border(TableBorder.Rounded)
             .Title("Información de Fichas")
             .AddColumn("Nombre")
@@ -22,7 +22,7 @@ public class Informacion
     public static void MostrarInformacion(List<Ficha> fichas)
     {
         // Limpia las filas anteriores antes de agregar nueva información
-        InfoFichas.Rows.Clear();
+        tablaInformacion.Rows.Clear();
 
         foreach (var ficha in fichas)
         {
@@ -30,17 +30,20 @@ public class Informacion
             int porcentajeVida = ficha.Puntos * 10; // Suponiendo que 10 puntos = 100%
 
             // Agrega una nueva fila con la información de cada ficha
-            InfoFichas.AddRow(
+            tablaInformacion.AddRow(
                 ficha.Nombre,
                 $"{porcentajeVida}%", // Mostrar la vida como porcentaje
                 ficha.Habilidad,
-                ficha.Cooldown > 0 ? ficha.Cooldown.ToString() : "Listo");
+                ficha.Cooldown > 0 ? ficha.Cooldown.ToString() : "Listo"
+            );
         }
 
         // Refresca la tabla para mostrar la información actualizada en la consola
-        AnsiConsole.Live(InfoFichas).Start(ctx =>
-        {
-            ctx.Refresh();
-        });
+        AnsiConsole
+            .Live(tablaInformacion)
+            .Start(ctx =>
+            {
+                ctx.Refresh();
+            });
     }
 }
