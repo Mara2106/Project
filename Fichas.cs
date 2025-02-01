@@ -119,7 +119,7 @@ public class Ficha
         {
             // Notificación cuando la ficha pierde todos sus puntos
             Console.WriteLine($"¡{Nombre} ha perdido todos sus puntos! El juego ha terminado.");
-            Thread.Sleep(3000); // Pausa de 3 segundos
+            Thread.Sleep(1500); // Pausa de 1.5 segundos
             Environment.Exit(0); // Termina el programa
     
 
@@ -167,7 +167,7 @@ public class Ficha
             turnosPasoFantasma--;  // Reducir el contador de turnos de Paso Fantasma
             if (turnosPasoFantasma == 0)
             {
-                Console.WriteLine($"{Nombre} ya no puede atravesar obstáculos.");
+                Console.WriteLine($"{Nombre} ya no puede atravesar paredes");
             }
         }
     }
@@ -191,21 +191,15 @@ public class Ficha
                 InmunidadTemporal();
                  Cooldown = 3;
                 break;
-            case "Paso Fantasma":
-    if (turnosPasoFantasma <= 0)
-    {
-        turnosPasoFantasma = 3; // Establecer los turnos de Paso Fantasma
-        Console.WriteLine($"{Nombre} ha activado 'Paso Fantasma' y podrá atravesar obstáculos durante {turnosPasoFantasma} turnos.");
-    }
-    else
-    {
-        Console.WriteLine($"{Nombre} ya tiene activa la habilidad 'Paso Fantasma'.");
-    }
-    Cooldown = 3; // Establecer el tiempo de enfriamiento para la habilidad
-    break;
-
+            case "PasoFantasma":
+            if (turnosPasoFantasma <= 0)
+            {
+                turnosPasoFantasma = 3; // Establecer los turnos de Paso Fantasma
+                Console.WriteLine($"{Nombre} ha activado 'Paso Fantasma' y podrá atravesar obstáculos durante {turnosPasoFantasma} turnos.");
+            }
             
-    
+            Cooldown = 3; // Establecer el tiempo de enfriamiento para la habilidad
+            break;
             case "Curación Rápida":
                 Curar();
                  Cooldown = 3;
@@ -233,8 +227,8 @@ public class Ficha
         } while (tablero[fila, columna] != Casilla.Camino);  // Busca una casilla válida
         Mover(fila, columna,tablero);
         Console.WriteLine($"{Nombre} se teletransportó a la posición ({fila}, {columna}).");
-        Thread.Sleep(3000); // Pausa de 3 segundos
-        TableroDrawer.DibujarTablero(tablero, fichasSeleccionadas);
+        Thread.Sleep(1500); // Pausa de 1.5 segundos
+        TableroDrawer.ImprimirTablero(tablero, fichasSeleccionadas);
     }
 
     // Activa la inmunidad temporal para evitar pérdida de puntos
@@ -244,7 +238,7 @@ public class Ficha
         {
             TurnosInmunidad = 6;  // Activar inmunidad por 6 turnos
             Console.WriteLine($"{Nombre} ha activado Inmunidad Temporal por 3 turnos.");
-            Thread.Sleep(3000); // Pausa de 3 segundos
+            Thread.Sleep(1500); // Pausa de 1.5 segundos
         }
         else
         {
@@ -263,7 +257,7 @@ public class Ficha
     if (esBorde)
     {
         Console.WriteLine($"{Nombre} está intentando atravesar un obstáculo en el borde del tablero.");
-        Thread.Sleep(3000); 
+        Thread.Sleep(1500); 
         return false;
     }
 
@@ -283,14 +277,14 @@ public class Ficha
         Puntos += 2;
         if (Puntos > 4) Puntos = 4;  // Asegura que los puntos no excedan 4
         Console.WriteLine($"{Nombre} se ha curado. Puntos actuales: {Puntos}");
-        Thread.Sleep(3000); // Pausa de 3 segundos
+        Thread.Sleep(1500); // Pausa de 1.5 segundos
     }
 
     // Permite a la ficha moverse dos veces en un turno
     public void AvanceTriple(Casilla[,] tablero, List<Ficha> fichasSeleccionadas)
     {
         Console.WriteLine($"{Nombre} Puede moverse 2 veces seguidas y luego otravez al presionar `Mover Ficha`");
-        Thread.Sleep(3000); // Pausa de 3 segundos
+        Thread.Sleep(1500); // Pausa de 1.5 segundos
 
         for (int i = 0; i < 2; i++)
         {
@@ -316,7 +310,7 @@ public class Ficha
             {
                 Mover(nuevaFila, nuevaColumna,tablero);
                 Console.WriteLine($"{Nombre} se ha movido a la posición ({nuevaFila}, {nuevaColumna}).");
-                TableroDrawer.DibujarTablero(tablero, fichasSeleccionadas);
+                TableroDrawer.ImprimirTablero(tablero, fichasSeleccionadas);
             }
             else
             {

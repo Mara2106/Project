@@ -22,7 +22,7 @@ public class GenerarTablero
         InicializarTablero(tablero);
         GenerarCamino(tablero, 1, 1, random); // Genera caminos desde (1,1)
 
-        if (!HayCaminosConectados(tablero)) // Verifica que los caminos estén conectados
+        if (!CaminosConectados(tablero)) // Verifica que los caminos estén conectados
         {
         Console.WriteLine("Error: Los caminos no están completamente conectados.");
         return (tablero, new List<(int, int, Trampa.Tipo)>());
@@ -67,7 +67,7 @@ public class GenerarTablero
             int nuevaFila = fila + df * 2;
             int nuevaColumna = columna + dc * 2;
 
-            if (EsPosicionValida(tablero, nuevaFila, nuevaColumna) && tablero[nuevaFila, nuevaColumna] == Casilla.Obstaculo)
+            if (PosicionValida(tablero, nuevaFila, nuevaColumna) && tablero[nuevaFila, nuevaColumna] == Casilla.Obstaculo)
             {
                 tablero[fila + df, columna + dc] = Casilla.Camino; // Conecta el camino intermedio
                 GenerarCamino(tablero, nuevaFila, nuevaColumna, random); // Llamada recursiva
@@ -76,7 +76,7 @@ public class GenerarTablero
     }
 
     // Verifica si una posición es válida dentro del tablero
-    private static bool EsPosicionValida(Casilla[,] tablero, int fila, int columna)
+    private static bool PosicionValida(Casilla[,] tablero, int fila, int columna)
     {
         return fila > 0 && fila < tablero.GetLength(0) - 1 && columna > 0 && columna < tablero.GetLength(1) - 1;
     }
@@ -94,7 +94,7 @@ public class GenerarTablero
                 obstaculosColocados++;
 
                 // Verifica la conectividad del tablero después de colocar un obstáculo
-                if (!HayCaminosConectados(tablero))
+                if (!CaminosConectados(tablero))
                 {
                     // Si los caminos no están conectados, deshace la colocación
                     tablero[fila, columna] = Casilla.Camino;
@@ -171,7 +171,7 @@ public static void ColocarObjetos(Casilla[,] tablero, int cantidadObjetos, Rando
     }
 
     // Verifica si todos los caminos del tablero están conectados
-    private static bool HayCaminosConectados(Casilla[,] tablero)
+    private static bool CaminosConectados(Casilla[,] tablero)
     {
         bool[,] visitado = new bool[tablero.GetLength(0), tablero.GetLength(1)];
 
@@ -209,7 +209,7 @@ public static void ColocarObjetos(Casilla[,] tablero, int cantidadObjetos, Rando
     // Realiza una búsqueda en profundidad (DFS) para marcar los caminos conectados
     private static void DFS(Casilla[,] tablero, bool[,] visitado, int fila, int columna)
     {
-        if (!EsPosicionValida(tablero, fila, columna) || visitado[fila, columna] || tablero[fila, columna] != Casilla.Camino)
+        if (!PosicionValida(tablero, fila, columna) || visitado[fila, columna] || tablero[fila, columna] != Casilla.Camino)
             return;
 
         visitado[fila, columna] = true;

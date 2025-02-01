@@ -41,7 +41,7 @@ public class StartGame
     {
         // Mostrar instrucciones aquí
         AnsiConsole.MarkupLine("[bold blue]Instrucciones del juego:[/]");
-        AnsiConsole.MarkupLine("- Presiona ENTER y usa las teclas de dirección para moverte.");
+        AnsiConsole.MarkupLine("- Usa las teclas de dirección para moverte.");
         AnsiConsole.MarkupLine("- Recoge objetos para ganar.");
         AnsiConsole.MarkupLine("- Evita los obstáculos y trampas.");
         AnsiConsole.MarkupLine("Presiona cualquier tecla para volver al menú.");

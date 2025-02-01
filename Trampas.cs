@@ -24,7 +24,6 @@ public class Trampa(Trampa.Tipo tipo)
             ficha.AumentarCooldown(5);
             Console.WriteLine($"Cooldown después: {ficha.Cooldown}");
            break;
-           System.Console.WriteLine(Shamara);
 
         }
     }

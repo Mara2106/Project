@@ -4,12 +4,12 @@ using System.Collections.Generic;
 public class Informacion
 {
     // Tabla para mostrar la información de las fichas
-    private static Table tablaInformacion = new Table();
+    private static Table InfoFichas= new Table();
 
     // Inicializa la tabla con las columnas necesarias
     public static void Inicializar()
     {
-        tablaInformacion = new Table()
+        InfoFichas = new Table()
             .Border(TableBorder.Rounded)
             .Title("Información de Fichas")
             .AddColumn("Nombre")
@@ -22,7 +22,7 @@ public class Informacion
     public static void MostrarInformacion(List<Ficha> fichas)
     {
         // Limpia las filas anteriores antes de agregar nueva información
-        tablaInformacion.Rows.Clear();
+        InfoFichas.Rows.Clear();
 
         foreach (var ficha in fichas)
         {
@@ -30,7 +30,7 @@ public class Informacion
             int porcentajeVida = ficha.Puntos * 10; // Suponiendo que 10 puntos = 100%
 
             // Agrega una nueva fila con la información de cada ficha
-            tablaInformacion.AddRow(
+            InfoFichas.AddRow(
                 ficha.Nombre,
                 $"{porcentajeVida}%", // Mostrar la vida como porcentaje
                 ficha.Habilidad,
@@ -38,7 +38,7 @@ public class Informacion
         }
 
         // Refresca la tabla para mostrar la información actualizada en la consola
-        AnsiConsole.Live(tablaInformacion).Start(ctx =>
+        AnsiConsole.Live(InfoFichas).Start(ctx =>
         {
             ctx.Refresh();
         });

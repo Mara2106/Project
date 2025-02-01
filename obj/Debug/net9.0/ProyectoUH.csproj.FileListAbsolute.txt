@@ -15,3 +15,4 @@ C:\ProyectoUH\obj\Debug\net9.0\refint\ProyectoUH.dll
 C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.pdb
 C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.genruntimeconfig.cache
 C:\ProyectoUH\obj\Debug\net9.0\ref\ProyectoUH.dll
+C:\ProyectoUH\obj\Debug\net9.0\ProyectoUH.sourcelink.json

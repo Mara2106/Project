@@ -15,11 +15,11 @@ partial class Program
     public static List<Ficha> fichasSeleccionadas = new();
     public static List<Ficha> fichasDisponibles = new()
     {
-        new Ficha("Ficha Wolverine()", -1, -1, ConsoleColor.White, "Teletransportación Aleatoria", 4),
-        new Ficha("Ficha Hulk", -1, -1, ConsoleColor.Green, "Inmunidad Temporal", 3),
-        new Ficha("Ficha Spiderman", -1, -1, ConsoleColor.Blue, "Paso Fantasma", 3),
-        new Ficha("Ficha Flash", -1, -1, ConsoleColor.Cyan, "Curación Rápida", 3),
-        new Ficha("Ficha Venom", -1, -1, ConsoleColor.Magenta, "Avance Triple", 3)
+        new Ficha("Ficha Wolverine(white)", -1, -1, ConsoleColor.White, "Teletransportación Aleatoria", 4),
+        new Ficha("Ficha Hulk(green)", -1, -1, ConsoleColor.Green, "Inmunidad Temporal", 3),
+        new Ficha("Ficha Spiderman(blue)", -1, -1, ConsoleColor.Blue, "Paso Fantasma", 3),
+        new Ficha("Ficha Flash(cyan)", -1, -1, ConsoleColor.Cyan, "Curación Rápida", 3),
+        new Ficha("Ficha Venom(magenta)", -1, -1, ConsoleColor.Magenta, "Avance Triple", 3)
     };
 
     static void Main()
@@ -34,14 +34,14 @@ partial class Program
         fichasSeleccionadas.Clear();
 
         // Seleccionar fichas para los jugadores
-        SeleccionarFichas(tablero, fichasSeleccionadas);
+        ElegirFicha(tablero, fichasSeleccionadas);
         
         // Colocar objetos en el tablero
         ColocarObjetos(tablero,CantidadObjetos,random); // Coloca 6 objetos
 
 
         // Dibujar el tablero inicial
-        TableroDrawer.DibujarTablero(tablero, fichasSeleccionadas);
+        TableroDrawer.ImprimirTablero(tablero, fichasSeleccionadas);
 
         // Inicializar información del juego
         Informacion.Inicializar();
@@ -51,7 +51,7 @@ partial class Program
         while (fichasSeleccionadas.Count > 0)
         {
             Console.Clear();
-            TableroDrawer.DibujarTablero(tablero, fichasSeleccionadas);
+            TableroDrawer.ImprimirTablero(tablero, fichasSeleccionadas);
             Informacion.MostrarInformacion(fichasSeleccionadas);
             Console.WriteLine($"\nTurno del Jugador {turnoActual + 1} ({fichasSeleccionadas[turnoActual].Nombre})");
 
@@ -91,7 +91,7 @@ if (accion == "Mover Ficha")
         nuevaFila = primeraFila;
         nuevaColumna = primeraColumna;
 
-        TableroDrawer.DibujarTablero(tablero, fichasSeleccionadas);
+        TableroDrawer.ImprimirTablero(tablero, fichasSeleccionadas);
 
         Console.WriteLine("Usa las teclas de dirección para mover la ficha una casilla más.");
         ConsoleKey segundaTeclaPresionada = Console.ReadKey(true).Key;
@@ -122,7 +122,7 @@ if (accion == "Mover Ficha")
         else
         {
             Console.WriteLine("Movimiento no permitido en el segundo paso.");
-            Thread.Sleep(3000); 
+            Thread.Sleep(1500); 
 
 
         }
@@ -130,10 +130,10 @@ if (accion == "Mover Ficha")
     else
     {
         Console.WriteLine("Movimiento no permitido en el primer paso.");
-        Thread.Sleep(3000); 
+        Thread.Sleep(1500); 
     }
 
-    TableroDrawer.DibujarTablero(tablero, fichasSeleccionadas);
+    TableroDrawer.ImprimirTablero(tablero, fichasSeleccionadas);
     fichasSeleccionadas[turnoActual].FinalizarTurno();
     turnoActual = (turnoActual + 1) % fichasSeleccionadas.Count; // Avanzar al siguiente turno
 
@@ -191,7 +191,7 @@ if (accion == "Mover Ficha")
         }
     }
 
-   public static void SeleccionarFichas(Casilla[,] tablero, List<Ficha> fichasSeleccionadas)
+   public static void ElegirFicha(Casilla[,] tablero, List<Ficha> fichasSeleccionadas)
 {
     var random = new Random();
     
@@ -227,7 +227,7 @@ static bool MoverFicha(Ficha ficha, int nuevaFila, int nuevaColumna, Casilla[,] 
         ficha.Mover(nuevaFila, nuevaColumna, tablero);
 
         // Manejar trampas en la nueva posición
-        ManejarTrampa(nuevaFila, nuevaColumna, ficha, tablero, trampas);
+        AplicarTrampa(nuevaFila, nuevaColumna, ficha, tablero, trampas);
 
         // Verificar si hay un objeto en la nueva posición
         if (tablero[nuevaFila, nuevaColumna] == Casilla.Objeto)
@@ -274,7 +274,7 @@ static bool MoverFicha(Ficha ficha, int nuevaFila, int nuevaColumna, Casilla[,] 
         return true;
     }
 
-  public static void ManejarTrampa(int fila, int columna, Ficha ficha, Casilla[,] tablero, List<(int fila, int columna, Trampa.Tipo tipo)> trampas)
+  public static void AplicarTrampa(int fila, int columna, Ficha ficha, Casilla[,] tablero, List<(int fila, int columna, Trampa.Tipo tipo)> trampas)
 {
     if (tablero[fila, columna] == Casilla.Trampa)
     {
@@ -288,19 +288,19 @@ static bool MoverFicha(Ficha ficha, int nuevaFila, int nuevaColumna, Casilla[,] 
                 case Trampa.Tipo.Quita1Punto:
                     ficha.PerderPuntos(1);
                     Console.WriteLine($"Trampa activada,Ficha {ficha.Nombre} perdió 10% de vida .");
-                    Thread.Sleep(3000); // Pausa de 3 segundos
+                    Thread.Sleep(1500); // Pausa de 1.5 segundos
                     break;
 
                 case Trampa.Tipo.Quita2Puntos:
                     ficha.PerderPuntos(2);
                     Console.WriteLine($"Trampa activada,Ficha {ficha.Nombre} perdió 20% de vida .");
-                    Thread.Sleep(3000); // Pausa de 3 segundos
+                    Thread.Sleep(1500); // Pausa de 1.5 segundos
                     break;
 
                 case Trampa.Tipo.AumentarCooldown:
                     ficha.AumentarCooldown(5);
                     Console.WriteLine($"Trampa AumentarCooldown activada en ({fila}, {columna}). Cooldown de {ficha.Nombre} aumentado en 5 turnos.");
-                    Thread.Sleep(3000); // Pausa de 3 segundos
+                    Thread.Sleep(1500); // Pausa de 1.5 segundos
                     break;
 
                 // Aquí puedes agregar más tipos de trampas si lo deseas
@@ -355,7 +355,7 @@ static bool EsMovimientoValido(Casilla[,] tablero, int fila, int columna, Ficha 
 
     static void ActualizarTableroYNotificar(Ficha ficha, Casilla[,] tablero, int fila, int columna)
     {
-        TableroDrawer.DibujarTablero(tablero, fichasSeleccionadas);
+        TableroDrawer.ImprimirTablero(tablero, fichasSeleccionadas);
         Console.WriteLine($"{ficha.Nombre} se movió a ({fila}, {columna}).");
     }
 }

@@ -3,7 +3,7 @@ using static GenerarTablero;
 public class TableroDrawer
 {
     // Método para dibujar el tablero en la consola usando Spectre.Console
-    public static void DibujarTablero(Casilla[,] tablero, List<Ficha> fichasSeleccionadas)
+    public static void ImprimirTablero(Casilla[,] tablero, List<Ficha> fichasSeleccionadas)
     {
         // Limpiar toda la consola antes de redibujar
         Console.Clear();
@@ -21,7 +21,7 @@ public class TableroDrawer
                     Casilla.Camino => Color.Black,
                     Casilla.Obstaculo => Color.Grey,
                     Casilla.Trampa => Color.Red,
-                    Casilla.Objeto => Color.Wheat1, // Los objetos se dibujan en color verde
+                    Casilla.Objeto => Color.Wheat1, 
                     _=> Color.Grey // Las trampas se dibujan en color rojo
                    
                 };
