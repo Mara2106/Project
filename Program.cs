@@ -17,7 +17,7 @@ partial class Program
         StartGame.MostrarPresentacion(); // Llamar a la presentación
 
         // Generar tablero y trampas
-        var (tablero, trampas) = Generar(Width,Height , CantTrampas , CantParedes);
+        var (tablero, trampas) = Generar(Width,Height , CantTrampas , CantParedes, CantObjetos);
         Random random = new();
 
         // Limpiar la selección de fichas al inicio
@@ -27,7 +27,7 @@ partial class Program
         ElegirFichas(tablero, FichasElegidas);
 
         // Colocar objetos en el tablero
-        ColocarObjetos(tablero, CantObjetos, random); // Coloca 6 objetos
+        //ColocarObjetos(tablero, CantObjetos, random); // Coloca 6 objetos
 
         // Dibujar el tablero inicial
         TableroDrawer.DibujarTablero(tablero, FichasElegidas);
@@ -93,8 +93,8 @@ partial class Program
                         primeraColumna,
                         tablero,
                         trampas
-                    )
-                )
+                               )
+                    ) 
                 {
                     nuevaFila = primeraFila;
                     nuevaColumna = primeraColumna;
@@ -140,7 +140,7 @@ partial class Program
                     else
                     {
                         Console.WriteLine("Movimiento no permitido en el segundo paso.");
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1500);
                     }
                 }
                 else

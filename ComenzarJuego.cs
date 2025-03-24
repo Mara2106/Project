@@ -2,7 +2,7 @@ using Spectre.Console;
 
 public class StartGame
 {
-    public static void MostrarPresentacion()
+        public static void MostrarPresentacion()
     {
         // Título del juego con estilo
         var title = new FigletText("WELCOME TO MY GAME").LeftJustified().Color(Color.Cyan1);
@@ -38,7 +38,6 @@ public class StartGame
                 break;
         }
     }
-
     private static void MostrarInstrucciones()
     {
         // Mostrar instrucciones aquí

@@ -17,8 +17,6 @@ public class Ficha
     // Constructor para inicializar una ficha
     public Ficha(
         string nombre,
-        int fila,
-        int columna,
         ConsoleColor color,
         string habilidad,
         int cooldown = 0,
@@ -26,11 +24,10 @@ public class Ficha
     )
     {
         Nombre = nombre;
-        Fila = fila;
-        Columna = columna;
+        Fila = -1;
+        Columna = -1;
         Color = color;
         Habilidad = habilidad;
-
         Cooldown = cooldown;
         Puntos = puntosIniciales;
         ObjetosRecogidos = 0; // Inicializar en 0
@@ -38,11 +35,11 @@ public class Ficha
 
     public static List<Ficha> fichasDisponibles = new()
     {
-        new Ficha("Ficha Wolverine(white)", -1, -1, ConsoleColor.White, "Teletransportación Aleatoria", 4),
-        new Ficha("Ficha Hulk(green)", -1, -1, ConsoleColor.Green, "Inmunidad Temporal", 3),
-        new Ficha("Ficha Spiderman(blue)", -1, -1, ConsoleColor.Blue, "Paso Fantasma", 3),
-        new Ficha("Ficha Deadpool(yellow)", -1, -1, ConsoleColor.Yellow, "Curación Rápida", 3),
-        new Ficha("Ficha Venom(magenta)", -1, -1, ConsoleColor.Magenta, "Avance Triple", 3),
+        new Ficha("Ficha Wolverine(white)", ConsoleColor.White, "Teletransportación Aleatoria", 4),
+        new Ficha("Ficha Hulk(green)", ConsoleColor.Green, "Inmunidad Temporal", 3),
+        new Ficha("Ficha Spiderman(blue)", ConsoleColor.Blue, "Paso Fantasma", 3),
+        new Ficha("Ficha Deadpool(cyan)",  ConsoleColor.Cyan, "Curación Rápida", 3),
+        new Ficha("Ficha Venom(magenta)", ConsoleColor.Magenta, "Avance Triple", 3),
     };
 
     public void RecogerObjeto()
@@ -167,7 +164,8 @@ public class Ficha
     {
         if (TurnosInmunidad > 0)
         {
-            TurnosInmunidad--; // Reducir el contador de inmunidad
+            TurnosInmunidad--
+            ; // Reducir el contador de inmunidad
             if (TurnosInmunidad == 0)
             {
                 Console.WriteLine($"{Nombre} ya no es inmune a la pérdida de puntos.");
@@ -276,9 +274,6 @@ public class Ficha
             Console.WriteLine($"{Nombre} ya tiene Inmunidad Temporal activa.");
         }
     }
-
-
-    
 
     // Incrementa los puntos de la ficha, hasta un máximo de 4
     private void Curar()

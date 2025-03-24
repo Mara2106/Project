@@ -18,22 +18,17 @@ public class GenerarTablero
         int ancho,
         int alto,
         int cantidadTrampas,
-        int cantidadObstaculos
+        int cantidadObstaculos,
+        int CantidadObjetos
     )
     {
         var tablero = new Casilla[alto, ancho];
         var random = new Random();
 
         InicializarTablero(tablero);
-        GenerarCamino(tablero, 1, 1, random); // Genera caminos desde (1,1)
-
-        if (!HayCaminosConectados(tablero)) // Verifica que los caminos estén conectados
-        {
-            Console.WriteLine("Error: Los caminos no están completamente conectados.");
-            return (tablero, new List<(int, int, Trampa.Tipo)>());
-        }
-
         ColocarObstaculos(tablero, cantidadObstaculos, random);
+        ColocarObjetos(tablero, CantidadObjetos, random); 
+
         List<(int fila, int columna, Trampa.Tipo tipo)> trampas = new();
         ColocarTrampas(tablero, cantidadTrampas, random, trampas);
 
@@ -60,30 +55,6 @@ public class GenerarTablero
                 {
                     tablero[fila, columna] = Casilla.Camino; // Inicialmente todo es camino
                 }
-            }
-        }
-    }
-
-    // Genera caminos aleatorios en el tablero
-    public static void GenerarCamino(Casilla[,] tablero, int fila, int columna, Random random)
-    {
-        tablero[fila, columna] = Casilla.Camino; // Marca la posición actual como camino
-
-        var direcciones = new (int, int)[] { (-1, 0), (1, 0), (0, -1), (0, 1) };
-        direcciones = direcciones.OrderBy(_ => random.Next()).ToArray(); // Direcciones aleatorias
-
-        foreach (var (df, dc) in direcciones)
-        {
-            int nuevaFila = fila + df * 2;
-            int nuevaColumna = columna + dc * 2;
-
-            if (
-                EsPosicionValida(tablero, nuevaFila, nuevaColumna)
-                && tablero[nuevaFila, nuevaColumna] == Casilla.Pared
-            )
-            {
-                tablero[fila + df, columna + dc] = Casilla.Camino; // Conecta el camino intermedio
-                GenerarCamino(tablero, nuevaFila, nuevaColumna, random); // Llamada recursiva
             }
         }
     }
@@ -166,9 +137,6 @@ public class GenerarTablero
                 // Colocar el objeto en la casilla
                 tablero[fila, columna] = Casilla.Objeto;
                 objetosColocados++;
-
-                // Mostrar mensaje de colocación
-                Console.WriteLine($"Objeto colocado en ({fila}, {columna}).");
             }
         }
     }
